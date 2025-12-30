@@ -1,0 +1,21 @@
+Total: 12 Lessons
+
+Beginner Level
+1. Lesson 1- What is an Array? Why Do We Use It?    ✅
+2. Lesson 2 - Creating and Accessing Array Elements ✅
+3. Lesson 3 - Common Array Properties & Basic Methods (length, push, pop, etc.) ✅
+4. Lesson 4 - Looping Through Arrays (for, for ... of, forEach)
+
+Intermediate Level
+
+5. Lesson 5 - Transforming Arrays (map, filter, reduce)
+6. Lesson 6 - Searching & Sorting (find, findIndex, includes, sort) ✅
+7. Lesson 7 - Modifying Structure (splice, slice, concat) ✅
+8. Lesson 8 - Working with Nested Arrays & Multidimensional Data
+9. Lesson 9 - Arrays of Objects (The REAL software-industry use cases)
+
+Advanced Level
+
+10. Lesson 10 - High-Order Array Concepts & Immutability
+11. Lesson 11 - Performance, Big-O & When NOT to use Arrays
+12. Lesson 12 - Interview-Level Problems & Real-World Scenarios
