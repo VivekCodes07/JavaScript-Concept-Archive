@@ -6,12 +6,13 @@ console.log(parent.children[1].innerHTML); // Tuesday
 for (let i = 0; i < parent.children.length; i++) {
     console.log(parent.children[i].innerHTML);
     parent.children[i].style.color = "orange";
+    parent.children[i].style.padding = '8px';
 }
 
 parent.children[1].style.backgroundColor = 'orange';
 parent.children[1].style.color = 'black';
 
-console.log(parent.firstElementChild);
+console.log(parent.firstElementChild); 
 console.log(parent.lastElementChild);
 
 const dayOne = document.querySelector('.day');
