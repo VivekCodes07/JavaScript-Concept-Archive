@@ -1,0 +1,19 @@
+body {
+    color: white;
+    background-color: black;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-content:space-around;
+}
+
+button {
+    background-color: rgb(34, 30, 30);
+    color: white;
+    padding: 4px 22px;
+    cursor:pointer;
+    font-weight: 600;
+    margin: 10px;
+}
