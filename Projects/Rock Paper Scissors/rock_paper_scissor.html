@@ -21,6 +21,7 @@
       text-align: center;
       color: white;
       background-color: black;
+      font-family: Arial, Helvetica, sans-serif;
     }
     div {
       display: flex;
@@ -64,101 +65,14 @@
   <body>
     <h1>Rock Paper Scissors</h1>
     <div>
-      <button
-        onclick="
-      const randomNumber = Math.random(); // Generates a random number between 0 and 1.
-
-      let computerMove = '';
-
-      if (randomNumber >= 0 && randomNumber < 0.33) {
-        computerMove = 'Rock';
-      } else if (randomNumber >= 0.3 && randomNumber < 0.66) {
-         computerMove = 'Paper';
-      } else {
-         computerMove = 'Scissor';
-      }
-
-      console.log(computerMove);
-
-
-      let result = '';
-
-      if (computerMove === 'Rock') {
-        result = `It's a Tie 😑`;
-      } else if (computerMove === 'Paper') {
-        result = 'You Loose 👎'
-      } else if (computerMove === 'Scissor') {
-        result = 'You Won 🏆'
-      }
-      
-      alert(`You picked Rock. Computer picked ${computerMove}. ${result}`);
-    "
-      >
-        Rock
-      </button>
-      <button
-        onclick="
-      const randomNumber = Math.random();
-
-      let computerMove = '';
-
-      if (randomNumber >= 0 && randomNumber < 0.3) {
-        computerMove = 'Rock';
-      } else if (randomNumber >= 0.3 && randomNumber < 0.6) {
-        computerMove = 'Paper';
-      } else if (randomNumber >= 0.6 && randomNumber < 1) {
-        computerMove = 'Scissor';
-      }
-
-      console.log(computerMove);
-       
-      let result = '';
-
-      if (computerMove === 'Paper') {
-        result = `'It's a Tie 😑`;
-      } else if (computerMove === 'Rock') {
-        result = `You Won 🏆`;
-      } else if (computerMove === 'Scissor') {
-        result = `You Loose 👎`;
-      }
-
-      alert(`You picked Paper. Computer picked ${computerMove}. ${result}`);
-      "
-      >
-        Paper
-      </button>
-
-      <button
-      onclick = "
-      const randomNumber = Math.random();
-
-      let computerMove = '';
-
-      if (randomNumber >= 0 && randomNumber < 0.3) {
-        computerMove = 'Rock';
-      } else if (randomNumber >= 0.3 && randomNumber < 0.6) {
-        computerMove = 'Paper';
-      } else if (randomNumber >= 0.6 && randomNumber < 1) {
-        computerMove = 'Scissor';
-      }
-
-      console.log(computerMove);
-
-      let result = '';
-
-      if (computerMove === 'Scissor') {
-        result = `It's a Tie 😑`;
-      } else if (computerMove === 'Paper') {
-        result = `You Won 🏆`;
-      } else if (computerMove === 'Rock') {
-        result = `You Loose 👎`;
-      }
-
-      alert(`You picked Scissor. Computer picked ${computerMove}. ${result}`);
-      "
-      >Scissor</button>
+      <button value="Rock">Rock</button>
+      <button value="Paper">Paper</button>
+      <button value="Scissor">Scissor</button>
     </div>
+    <h2 id="result"></h2>
 
-    <script></script>
+    <p></p>
+
+    <script src="script.js"></script>
   </body>
 </html>
