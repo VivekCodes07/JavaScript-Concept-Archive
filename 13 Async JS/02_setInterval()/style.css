@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  color: #ffffff;
+}
+
+/* Heading */
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Timer display */
+h2 {
+  font-size: 3.8rem;
+  font-weight: 600;
+  color: #00e5ff;
+  margin-top: 10px;
+}
+
+/* Buttons */
+button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: 130px;
+}
+
+/* Start */
+#start {
+  background-color: #00c853;
+  color: #fff;
+}
+
+#start:hover {
+  background-color: #00b248;
+  transform: translateY(-2px);
+}
+
+/* Stop */
+#stop {
+  background-color: #ff5252;
+  color: #fff;
+}
+
+#stop:hover {
+  background-color: #e04848;
+  transform: translateY(-2px);
+}
+
+/* Restart */
+#restart {
+  background-color: #ffc107;
+  color: #000;
+}
+
+#restart:hover {
+  background-color: #ffb300;
+  transform: translateY(-2px);
+}
+
+/* Click effect */
+button:active {
+  transform: scale(0.95);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  button {
+    min-width: 110px;
+  }
+}
