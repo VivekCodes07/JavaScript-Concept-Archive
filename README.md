@@ -31,17 +31,47 @@ I keep adding new folders, code, and improvements as I learn new concepts.
 The code is organized based on the learning flow of the course:
 
 ```text
-01 JS Basics/
-02 Arrays/
-02 Arrays Part-2/
-03 Objects/
-04 Functions/
-05 JS BTS/
-06 Control Flow/
-07 Iterators/
-08 High Order Array Loops/
-09 filter map and reduce/
-09 PS/
-10 DOM/
-DOM in JS/
-Projects/
+01 JS Basics
+02 Arrays
+02 Arrays Part-2
+03 Objects
+04 Functions
+05 JS BTS
+06 Control Flow
+07 Iterators
+08 High Order Array Loops
+09 filter map and reduce
+09 PS
+10 DOM
+11 DOM Overview
+11 DOM Projects
+12 Events
+13 Async JS
+14 API Request
+15 JSON and API
+16 Asynchronous JS
+Projects
+```
+
+Each folder contains code examples and practice related to that specific topic.
+
+---
+
+## Topics Covered
+
+- JavaScript Basics
+- Arrays and Advanced Array Methods
+- Objects
+- Functions
+- Control Flow
+- Iterators and Loops
+- Higher Order Functions
+- Map, Filter, Reduce
+- DOM Manipulation
+- Events
+- Asynchronous JavaScript
+- API Requests
+- JSON Handling
+- Mini Projects
+
+---

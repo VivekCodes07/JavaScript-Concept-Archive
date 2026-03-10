@@ -1,0 +1,44 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation: colorChange 10s infinite linear;
+}
+
+/* Hide checkbox */
+#stopToggle{
+    display:none;
+}
+
+/* Button style */
+.stop-btn{
+    padding:15px 30px;
+    background:black;
+    color:white;
+    font-size:20px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.stop-btn:hover{
+    background:#333;
+}
+
+/* Pause animation when checked */
+#stopToggle:checked ~ .container{
+    pointer-events:none;
+}
+
+#stopToggle:checked ~ .container ~ body{
+    animation-play-state: paused;
+}
+
