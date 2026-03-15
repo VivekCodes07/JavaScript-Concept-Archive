@@ -33,8 +33,8 @@ We have three async things in this program:
 
 Also remember:
 
-Promise .then() → Microtask Queue
-setTimeout → Callback Queue
+-> Promise .then() → Microtask Queue
+-> setTimeout → Callback Queue
 
 
 ## Step-by-Step Execution (Like the JS Engine):
