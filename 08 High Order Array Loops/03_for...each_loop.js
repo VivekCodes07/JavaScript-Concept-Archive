@@ -17,13 +17,18 @@ array.forEach(function(value, index, array) {
 
 
 const coding = ["JS", "Python", "C++", "Java", "C#"];
+
 console.log("for...Each using regular function:");
+
 coding.forEach(function (lang) {
   console.log(lang);
 });
 
+
 const heroes = ["Batman", "Superman", "Hulk", "Ironman", "Drake"];
+
 console.log("for...Each using arrow function");
+
 heroes.forEach((hero, index, array) => {
   console.log(hero, index, array);
 });

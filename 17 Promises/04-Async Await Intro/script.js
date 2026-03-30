@@ -30,3 +30,8 @@ async function run() {
 }
 
 run();
+
+/*
+In this case you're telling, Hey! JavaScript run is a function inside which asynchronous code is executing, so you may have to wait.
+i.e., Async/Await
+*/
