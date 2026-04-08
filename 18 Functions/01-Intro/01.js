@@ -11,140 +11,168 @@ function add() {
 add();
 
 /*
-======================== BASIC MEMORY UNDERSTANDING ========================
+======================== HOW JAVASCRIPT THINKS ============================
 
-1. When you WRITE this program → it is temporarily in RAM (editor memory).
+Whenever JavaScript runs a program, it does NOT directly start executing line-by-line.
 
-2. When you SAVE this file (script.js) → it is stored permanently on Hard Disk.
+Instead, it first prepares everything.
 
-3. When you RUN this program using Node.js → 
-   the file is LOADED back into RAM for execution.
+👉 Every Execution Context (Global or Function) runs in TWO steps:
 
-4. Inside RAM, Node.js creates a Runtime Environment which includes:
-   - Call Stack (VERY IMPORTANT for us)
-   - Heap (for objects, advanced topic)
-   - Event Loop (for async operations)
-
-👉 In this example, we ONLY focus on the CALL STACK.
+1. Memory Creation Phase (also called Hoisting Phase)
+2. Execution Phase
 
 ==========================================================================
 
 
-======================== CALL STACK EXECUTION =============================
+======================== GLOBAL EXECUTION CONTEXT =========================
 
-1. Initially → Call Stack is EMPTY.
+As soon as the program starts:
 
-2. As soon as execution starts →
-   JavaScript creates something called:
+👉 Global Execution Context (GEC) is created
+👉 It is pushed into the Call Stack
 
-   👉 Global Execution Context (GEC)
-
-   This is pushed onto the Call Stack.
-
-   Stack:
-   ┌──────────────────────────┐
-   │ Global Execution Context │
-   └──────────────────────────┘
-
-
-======================== MEMORY CREATION PHASE ============================
-
-3. JavaScript scans the entire code (before executing line-by-line).
-
-   It identifies:
-   - Variables outside functions → a, b
-   - Functions → add()
-
-4. Memory allocation happens:
-
-   - 'a' → reserved in memory
-   - 'b' → reserved in memory
-   - 'add' → function definition stored
-
-   (Note: variables initially get undefined, then values are assigned)
-
-5. Then values are assigned:
-
-   a = 100
-   b = 200
-
-6. Function 'add' is stored but NOT executed yet.
+Now JavaScript starts Phase 1...
 
 ==========================================================================
 
 
-======================== FUNCTION EXECUTION ===============================
+======================== 1️⃣ MEMORY CREATION (HOISTING) ====================
 
-7. Now JavaScript reaches:
+Think of this like:
+👉 “JS is scanning the code and setting up memory before doing anything”
 
-   add();
+In this phase:
 
-👉 Function is CALLED
+✔ Variables are created and set to 'undefined'
+✔ Functions are stored completely in memory
 
-8. When a function is called:
+-------------------- IN OUR CODE --------------------
 
-   TWO IMPORTANT THINGS HAPPEN:
+let a = 100;
+let b = 200;
 
-   (1) A new Execution Context is created for the function
-   (2) It is PUSHED onto the Call Stack
+function add() {...}
 
-   Stack becomes:
-   ┌──────────────────────────┐
-   │ add() Execution Context  │
-   ├──────────────────────────┤
-   │ Global Execution Context │
-   └──────────────────────────┘
+👉 What JS does:
 
+a → undefined
+b → undefined
+add → full function stored in memory
 
-======================== INSIDE FUNCTION ================================
+⚠️ This behaviour is called HOISTING
 
-9. Now execution moves INSIDE the function add()
+✔ Variables are "hoisted" with value = undefined  
+✔ Functions are "hoisted" with full definition  
 
-   let c = a + b;
-
-   - 'c' is a LOCAL variable (exists only inside this function)
-   - It gets memory inside add() Execution Context
-   - Value: c = 100 + 200 = 300
-
-10. console.log(c);
-
-   Output: 300
-
-
-======================== FUNCTION COMPLETION =============================
-
-11. Function execution finishes →
-
-👉 Its Execution Context is REMOVED (POP) from the Stack
-
-   Stack becomes:
-   ┌──────────────────────────┐
-   │ Global Execution Context │
-   └──────────────────────────┘
-
-
-======================== PROGRAM END =====================================
-
-12. After everything is done →
-
-👉 Global Execution Context is also removed
-
-👉 Stack becomes EMPTY again
+👉 Important:
+JS has NOT executed anything yet
 
 ==========================================================================
 
 
-======================== KEY MEMORY CONCEPTS ==============================
+======================== 2️⃣ EXECUTION PHASE ==============================
 
-✔ Call Stack works on LIFO (Last In First Out)
+Now JavaScript starts running code line-by-line.
 
-✔ Each function call creates a NEW Execution Context
+--------------------
 
-✔ Local variables (like 'c') exist ONLY inside their function
+let a = 100;
+👉 a becomes 100
 
-✔ Global variables (like 'a', 'b') exist throughout the program
+let b = 200;
+👉 b becomes 200
 
-✔ Functions are stored in memory but executed ONLY when called
+function add() {...}
+👉 Already handled, so skipped
+
+add();
+👉 Function is called
+
+==========================================================================
+
+
+======================== FUNCTION EXECUTION CONTEXT =======================
+
+When add() is called:
+
+👉 A new Execution Context is created
+👉 It is pushed on top of the stack
+
+Now SAME TWO PHASES happen again inside the function
+
+==========================================================================
+
+
+======================== add() → HOISTING (MEMORY PHASE) ==================
+
+Inside function:
+
+let c;
+
+👉 c is created and set to undefined
+
+c → undefined
+
+==========================================================================
+
+
+======================== add() → EXECUTION PHASE ==========================
+
+Now code runs inside function:
+
+let c = a + b;
+
+👉 JS looks for a and b
+👉 Not found locally → goes to Global scope
+
+a = 100
+b = 200
+
+👉 c = 300
+
+--------------------
+
+console.log(c);
+👉 Output: 300
+
+==========================================================================
+
+
+======================== FUNCTION ENDS ===================================
+
+👉 Function execution finishes
+👉 Its Execution Context is removed from stack
+
+Now only Global Execution Context remains
+
+==========================================================================
+
+
+======================== PROGRAM FINISH ==================================
+
+👉 After everything is done:
+
+Global Execution Context is also removed
+
+👉 Call Stack becomes empty
+
+==========================================================================
+
+
+======================== SIMPLE WAY TO REMEMBER ===========================
+
+👉 Step 1: Hoisting (Memory Creation)
+   - Variables → undefined
+   - Functions → full definition
+
+👉 Step 2: Execution
+   - Values assigned
+   - Code runs
+
+👉 This happens:
+✔ First in Global
+✔ Then in every function
 
 ==========================================================================
 

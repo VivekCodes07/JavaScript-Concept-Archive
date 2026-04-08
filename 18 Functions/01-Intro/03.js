@@ -10,144 +10,197 @@ let b = 200;
 add(a, b);
 
 /*
-======================== BASIC IDEA =======================================
+======================== HOW TO THINK ABOUT THIS ==========================
 
-✔ x, y → PARAMETERS (placeholders inside function)
+👉 JavaScript always runs code in TWO phases:
 
-✔ a, b → ARGUMENTS (actual values passed during function call)
+1. Memory Creation Phase (Hoisting)
+2. Execution Phase
 
-✔ Value flow: a → x, b → y
-
-==========================================================================
-
-
-======================== CALL STACK START ================================
-
-1. Initially → Call Stack is EMPTY
-
-2. Execution starts →
-
-👉 Global Execution Context (GEC) is CREATED and PUSHED
-
-   Stack:
-   ┌──────────────────────────┐
-   │ Global Execution Context │
-   └──────────────────────────┘
-
-
-======================== MEMORY CREATION PHASE ============================
-
-3. JavaScript scans the code:
-
-   Finds:
-   - Function → add(x, y)
-   - Variables → a, b
-
-4. Memory allocation:
-
-   add → function stored
-   a → undefined
-   b → undefined
-
-5. Value assignment:
-
-   a = 100
-   b = 200
+And yes — this happens:
+✔ First in Global Execution Context
+✔ Then AGAIN inside every function
 
 ==========================================================================
 
 
-======================== FUNCTION CALL ===================================
+======================== GLOBAL EXECUTION CONTEXT =========================
 
-6. Execution reaches:
+As soon as program starts:
 
-   add(a, b);
+👉 Global Execution Context (GEC) is created
+👉 Pushed into Call Stack
 
-👉 Function is CALLED with arguments:
-
-   add(100, 200)
-
-7. What happens internally?
-
-   (1) New Execution Context is created for add()
-   (2) It is PUSHED onto the Call Stack
-
-   Stack:
-   ┌──────────────────────────┐
-   │ add() Execution Context  │
-   ├──────────────────────────┤
-   │ Global Execution Context │
-   └──────────────────────────┘
-
-
-======================== PARAMETER INITIALIZATION =========================
-
-8. Inside add() Execution Context:
-
-👉 PARAMETERS receive values:
-
-   x = 100   (from a)
-   y = 200   (from b)
-
-✔ These are LOCAL variables inside function
-
-✔ They are completely separate from a and b
+Now JS begins Phase 1...
 
 ==========================================================================
 
 
-======================== FUNCTION EXECUTION ==============================
+======================== 1️⃣ HOISTING (MEMORY PHASE) ======================
 
-9. Now execution runs inside function:
+Think of this like:
+👉 “JS is setting up everything before running code”
 
-   let c = x + y;
+In this phase:
 
-   - c is LOCAL variable
-   - Value: c = 100 + 200 = 300
+✔ Variables → created with value = undefined  
+✔ Functions → stored completely in memory  
 
-10. console.log(c);
+-------------------- IN OUR CODE --------------------
+
+function add(x, y) {...}
+let a, b;
+
+👉 Memory becomes:
+
+add → full function definition  
+a → undefined  
+b → undefined  
+
+⚠️ This is HOISTING
+
+✔ Functions are fully available even before execution  
+✔ Variables exist but are undefined  
+
+==========================================================================
+
+
+======================== 2️⃣ EXECUTION PHASE ==============================
+
+Now JS runs code line-by-line:
+
+--------------------
+
+function add(x, y) {...}
+👉 Already handled (skip)
+
+let a = 100;
+👉 a = 100
+
+let b = 200;
+👉 b = 200
+
+--------------------
+
+add(a, b);
+
+👉 Function is called with values:
+
+add(100, 200)
+
+==========================================================================
+
+
+======================== FUNCTION EXECUTION CONTEXT =======================
+
+👉 When function is called:
+
+1. New Execution Context is created
+2. Pushed onto Call Stack
+
+Now SAME TWO PHASES happen inside function
+
+==========================================================================
+
+
+======================== add() → HOISTING ================================
+
+Inside function:
+
+let c;
+
+👉 c → undefined
+
+Also:
+👉 Parameters are prepared (but values assigned in execution phase)
+
+==========================================================================
+
+
+======================== add() → EXECUTION ===============================
+
+Now function starts executing:
+
+👉 PARAMETERS RECEIVE VALUES:
+
+x = 100   (value of a)
+y = 200   (value of b)
+
+✔ x and y are LOCAL to function
+✔ They are copies (for primitive values)
+
+--------------------
+
+let c = x + y;
+
+👉 c = 300
+
+--------------------
+
+console.log(c);
 
 👉 Output: 300
 
 ==========================================================================
 
 
-======================== FUNCTION END ====================================
+======================== IMPORTANT UNDERSTANDING ==========================
 
-11. Function completes →
+👉 Value flow:
 
-👉 add() Execution Context is POPPED from stack
+a → x  
+b → y  
 
-   Stack:
-   ┌──────────────────────────┐
-   │ Global Execution Context │
-   └──────────────────────────┘
+✔ Only VALUES are passed (not the original variables)
 
+So:
 
-======================== PROGRAM END =====================================
+x = 100 (copy)
+y = 200 (copy)
 
-12. After execution finishes →
-
-👉 Global Execution Context is also REMOVED
-
-👉 Stack becomes EMPTY
+👉 If x changes, a does NOT change
 
 ==========================================================================
 
 
-======================== KEY MEMORY CONCEPTS ==============================
+======================== FUNCTION END ====================================
 
-✔ Parameters (x, y) are LOCAL to the function
+👉 Function finishes execution
 
-✔ Arguments (a, b) pass VALUES, not variables themselves
+👉 Its Execution Context is removed from stack
 
-✔ x and y are COPIES of a and b (for primitive values)
+Now only Global Execution Context remains
 
-✔ Changes to x or y do NOT affect a or b
+==========================================================================
 
-✔ Each function call creates a NEW Execution Context
 
-✔ Call Stack follows LIFO (Last In First Out)
+======================== PROGRAM END =====================================
+
+👉 After everything finishes:
+
+Global Execution Context is removed
+
+👉 Call Stack becomes EMPTY
+
+==========================================================================
+
+
+======================== SIMPLE WAY TO REMEMBER ===========================
+
+👉 Hoisting Phase:
+   - Variables → undefined
+   - Functions → full definition
+
+👉 Execution Phase:
+   - Values assigned
+   - Function runs
+
+👉 Parameters vs Arguments:
+
+✔ Parameters → placeholders (x, y)
+✔ Arguments → actual values (a, b)
+
+👉 Values are COPIED (for primitives)
 
 ==========================================================================
 

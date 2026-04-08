@@ -12,157 +12,201 @@ let result = add();
 console.log(result);
 
 /*
-======================== BASIC MEMORY UNDERSTANDING ========================
+======================== HOW JS HANDLES THIS ==============================
 
-1. When you RUN this program →
-   it is loaded into RAM and executed inside Node.js Runtime.
+JavaScript doesn’t directly execute code.
 
-2. Inside RAM, we mainly focus on:
-   👉 CALL STACK (for execution flow)
+👉 It always works in TWO phases inside every Execution Context:
 
-==========================================================================
-
-
-======================== CALL STACK START ================================
-
-1. Initially → Call Stack is EMPTY
-
-2. Execution begins →
-
-👉 Global Execution Context (GEC) is CREATED and PUSHED
-
-   Stack:
-   ┌──────────────────────────┐
-   │ Global Execution Context │
-   └──────────────────────────┘
-
-
-======================== MEMORY CREATION PHASE ============================
-
-3. JavaScript scans the code:
-
-   Identifies:
-   - Variables → a, b, result
-   - Function → add()
-
-4. Memory allocation:
-
-   a → undefined
-   b → undefined
-   result → undefined
-   add → function stored
-
-5. Value assignment:
-
-   a = 100
-   b = 200
+1. Memory Creation Phase (Hoisting)
+2. Execution Phase
 
 ==========================================================================
 
 
-======================== FUNCTION CALL ===================================
+======================== GLOBAL EXECUTION CONTEXT =========================
 
-6. Execution reaches:
+As soon as program starts:
 
-   let result = add();
+👉 Global Execution Context (GEC) is created
+👉 Pushed into Call Stack
 
-👉 Function add() is CALLED
-
-7. What happens?
-
-   (1) New Execution Context is created for add()
-   (2) It is PUSHED onto the stack
-
-   Stack:
-   ┌──────────────────────────┐
-   │ add() Execution Context  │
-   ├──────────────────────────┤
-   │ Global Execution Context │
-   └──────────────────────────┘
-
-
-======================== INSIDE FUNCTION ================================
-
-8. Execution enters add()
-
-   let c = a + b;
-
-   - 'c' is LOCAL to add()
-   - Value: c = 100 + 200 = 300
-
-9. return c;
-
-👉 VERY IMPORTANT STEP:
-
-   - The value 300 is RETURNED to the place where function was called
-   - Control goes BACK to Global Execution Context
-   - The function does NOT print anything itself
-
-
-======================== RETURN FLOW =====================================
-
-10. The returned value replaces the function call:
-
-   let result = add();
-
-   becomes:
-
-   let result = 300;
-
-11. So now:
-
-   result = 300
+Now JS starts Phase 1...
 
 ==========================================================================
 
 
-======================== FUNCTION END ====================================
+======================== 1️⃣ HOISTING (MEMORY PHASE) ======================
 
-12. After return →
+Think of this as:
+👉 “JS is preparing memory before running anything”
 
-👉 add() Execution Context is POPPED from stack
+In this phase:
 
-   Stack:
-   ┌──────────────────────────┐
-   │ Global Execution Context │
-   └──────────────────────────┘
+✔ Variables → created with value = undefined  
+✔ Functions → stored completely in memory  
+
+-------------------- IN OUR CODE --------------------
+
+let a, b, result;
+function add() {...}
+
+👉 Memory becomes:
+
+a → undefined  
+b → undefined  
+result → undefined  
+add → full function definition  
+
+⚠️ This is HOISTING
+
+✔ Variables are hoisted as undefined  
+✔ Functions are hoisted with full body  
+
+👉 Still NO execution yet
+
+==========================================================================
+
+
+======================== 2️⃣ EXECUTION PHASE ==============================
+
+Now JS starts running line-by-line:
+
+--------------------
+
+let a = 100;
+👉 a = 100
+
+let b = 200;
+👉 b = 200
+
+function add() {...}
+👉 already handled
+
+--------------------
+
+let result = add();
+
+👉 Function is CALLED
+
+==========================================================================
+
+
+======================== FUNCTION EXECUTION CONTEXT =======================
+
+When add() is called:
+
+👉 New Execution Context is created
+👉 Pushed onto Call Stack
+
+Now AGAIN same 2 phases happen inside function
+
+==========================================================================
+
+
+======================== add() → HOISTING ================================
+
+Inside function:
+
+let c;
+
+👉 c → undefined
+
+(Local memory created for function)
+
+==========================================================================
+
+
+======================== add() → EXECUTION ===============================
+
+Now function starts executing:
+
+let c = a + b;
+
+👉 JS looks for a, b
+👉 Not in local → goes to Global
+
+a = 100  
+b = 200  
+
+👉 c = 300
+
+--------------------
+
+return c;
+
+👉 This is VERY IMPORTANT:
+
+✔ Function STOPS immediately  
+✔ Value (300) is sent BACK to caller  
+✔ Control goes back to Global Execution Context  
+
+==========================================================================
+
+
+======================== WHAT RETURN ACTUALLY DOES ========================
+
+This line:
+
+let result = add();
+
+👉 Internally becomes:
+
+let result = 300;
+
+✔ Returned value replaces the function call
+
+👉 So now:
+result = 300
+
+==========================================================================
+
+
+======================== FUNCTION ENDS ===================================
+
+👉 After return:
+
+add() Execution Context is REMOVED from stack
+
+Now only Global Execution Context remains
+
+==========================================================================
 
 
 ======================== FINAL EXECUTION ================================
 
-13. Next line executes:
-
-   console.log(result);
+console.log(result);
 
 👉 Output: 300
 
 ==========================================================================
 
 
-======================== PROGRAM END =====================================
+======================== PROGRAM FINISH ==================================
 
-14. After execution completes →
+👉 After all code runs:
 
-👉 Global Execution Context is also REMOVED
+Global Execution Context is removed
 
-👉 Stack becomes EMPTY
+👉 Call Stack becomes EMPTY
 
 ==========================================================================
 
 
-======================== KEY MEMORY CONCEPTS ==============================
+======================== SIMPLE WAY TO REMEMBER ===========================
 
-✔ return sends VALUE back to the caller
+👉 Hoisting Phase:
+   - Variables → undefined
+   - Functions → full definition
 
-✔ Execution always goes BACK after return
+👉 Execution Phase:
+   - Values assigned
+   - Function runs
 
-✔ Function Execution Context is destroyed after return
-
-✔ result stores the returned value (300)
-
-✔ Without return → function gives undefined by default
-
-✔ Call Stack follows LIFO (Last In First Out)
+👉 return:
+   ✔ Sends value back
+   ✔ Stops function immediately
+   ✔ Replaces function call with returned value
 
 ==========================================================================
 
