@@ -7,6 +7,45 @@ This repo is actively updated as I move forward with the course.
 
 ---
 
+## 📚 What’s inside?
+
+I’ve organized everything into small sections so I don’t lose my mind later 😅
+
+### 🟡 Basics & Foundations
+- 01 JS Basics → variables, data types, etc.
+- 03 Objects → how real-world stuff maps into JS objects
+- 04 Functions → building reusable logic
+- 05 JS BTS → what’s happening behind the scenes
+
+### 🔁 Control Flow & Logic
+- 06 Control Flow → if/else, loops, decisions
+- 07 Iterators → looping like a pro
+- 08 High Order Array Loops → map, filter, reduce vibes
+- 09 filter map and reduce → deeper practice
+
+### 🌐 DOM Stuff (browser magic)
+- 10 DOM → manipulating the page
+- 11 DOM Overview → events + interaction basics
+- 11 DOM Projects → building stuff in the browser
+
+### ⚡ Async & API world
+- 13 Async JS → callbacks, async flow
+- 14 API Request → XMLHttpRequest practice
+- 15 JSON and API → fetch + working with data
+- 16 Asynchronous Programming → async/await, callbacks, promises
+- 17 Promises → understanding promise chaos 😭
+
+### 🧠 Deep JS Concepts
+- 18 Functions → deeper dive again
+- 19 Hoisting → why JS behaves weird sometimes
+- 20 Scopes → global vs local vs block scope madness
+- 21 OOP → object-oriented programming in JS
+
+### 🧪 Practice Projects
+- Projects folder → random experiments + mini builds
+
+---
+
 ## What is this repo about?
 
 I created this repository to:
@@ -26,52 +65,3 @@ I keep adding new folders, code, and improvements as I learn new concepts.
 
 ---
 
-## Folder Structure
-
-The code is organized based on the learning flow of the course:
-
-```text
-01 JS Basics
-02 Arrays
-02 Arrays Part-2
-03 Objects
-04 Functions
-05 JS BTS
-06 Control Flow
-07 Iterators
-08 High Order Array Loops
-09 filter map and reduce
-09 PS
-10 DOM
-11 DOM Overview
-11 DOM Projects
-12 Events
-13 Async JS
-14 API Request
-15 JSON and API
-16 Asynchronous JS
-Projects
-```
-
-Each folder contains code examples and practice related to that specific topic.
-
----
-
-## Topics Covered
-
-- JavaScript Basics
-- Arrays and Advanced Array Methods
-- Objects
-- Functions
-- Control Flow
-- Iterators and Loops
-- Higher Order Functions
-- Map, Filter, Reduce
-- DOM Manipulation
-- Events
-- Asynchronous JavaScript
-- API Requests
-- JSON Handling
-- Mini Projects
-
----
