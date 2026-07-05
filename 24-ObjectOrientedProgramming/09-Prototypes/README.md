@@ -1554,3 +1554,52 @@ If I had to explain Prototypes in one minute, I would say:
 If I can confidently answer these questions without looking at my notes, then I've understood one of the most important concepts in JavaScript.
 
 Everything that comes next—Inheritance, Polymorphism, and Classes—is built on top of this prototype system.
+
+## Extra Note: Constructor Functions vs Classes
+
+One thing I realized while learning prototypes is that Constructor Functions and ES6 Classes handle prototype methods differently.
+
+### Constructor Functions
+
+I have to manually attach methods to the prototype.
+
+```javascript
+function Employee(name) {
+  this.name = name;
+}
+
+Employee.prototype.introduce = function () {
+  console.log(`Hi, I'm ${this.name}`);
+};
+```
+
+### ES6 Classes
+
+I simply write methods inside the class body.
+
+```javascript
+class Employee {
+  constructor(name) {
+    this.name = name;
+  }
+
+  introduce() {
+    console.log(`Hi, I'm ${this.name}`);
+  }
+}
+```
+
+Even though I never wrote
+
+```javascript
+Employee.prototype.introduce = function () {};
+```
+
+JavaScript automatically places the method on `Employee.prototype` behind the scenes.
+
+So the main difference is:
+
+- Constructor Functions → I manually attach prototype methods.
+- ES6 Classes → JavaScript automatically attaches prototype methods.
+
+Both ultimately use the same prototype system.

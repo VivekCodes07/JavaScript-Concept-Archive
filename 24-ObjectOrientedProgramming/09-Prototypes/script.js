@@ -286,3 +286,94 @@ not copied into every object.
 ✓ Object properties are unique.
 
 */
+
+
+
+/* ───────────────────── EXTRA LEARNING ───────────────────── */
+
+/*
+One thing I realized while learning Prototypes.
+
+Constructor Functions and ES6 Classes both use prototypes,
+but the way I write them is different.
+*/
+
+/* ---------------- Constructor Function ---------------- */
+
+function Employee(name) {
+  this.name = name;
+}
+
+/*
+I manually attach methods to the prototype.
+
+Every object created using Employee
+will share this single function.
+*/
+
+Employee.prototype.introduce = function () {
+  console.log(`Hi, I'm ${this.name}`);
+};
+
+const employee = new Employee("John");
+
+employee.introduce();
+
+/* ---------------- ES6 Class ---------------- */
+
+class Developer {
+  constructor(name) {
+    this.name = name;
+  }
+
+  /*
+    Even though this method is written inside the class,
+    JavaScript automatically places it on Developer.prototype.
+
+    Internally, it's similar to writing:
+
+    Developer.prototype.introduce = function () {
+      ...
+    };
+
+    I don't have to do it manually.
+  */
+
+  introduce() {
+    console.log(`Hi, I'm ${this.name}`);
+  }
+}
+
+const developer = new Developer("Emma");
+
+developer.introduce();
+
+/* ---------------- Proof ---------------- */
+
+console.log(Employee.prototype);
+console.log(Developer.prototype);
+
+/*
+Both prototypes contain the shared introduce() method.
+
+This proves that Classes are still using prototypes.
+*/
+
+console.log(employee.__proto__ === Employee.prototype); // true
+console.log(developer.__proto__ === Developer.prototype); // true
+
+/*
+Key Takeaway
+
+✓ Constructor Functions:
+  I manually attach methods using .prototype.
+
+✓ ES6 Classes:
+  JavaScript automatically attaches methods to the prototype.
+
+✓ End Result:
+  Both approaches use the exact same prototype system.
+
+Classes don't replace prototypes.
+They simply provide a cleaner syntax for working with them.
+*/
