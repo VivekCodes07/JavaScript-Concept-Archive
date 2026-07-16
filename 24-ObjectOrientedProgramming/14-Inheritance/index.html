@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Inheritance Docs</title>
+
+<style>
+:root {
+    --bg: #0b0f19;
+    --card: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+    --text: #e6edf3;
+    --accent: #7c3aed;
+    --secondary: #22d3ee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0b0f19, #111827);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 40px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #7c3aed, #22d3ee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 40px;
+    color: var(--secondary);
+}
+
+p {
+    margin-top: 10px;
+    color: #cbd5e1;
+}
+
+.card {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 14px;
+    margin-top: 20px;
+}
+
+pre {
+    background: #020617;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+code {
+    color: #38bdf8;
+    font-family: monospace;
+}
+
+ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+.highlight {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.note {
+    margin-top: 15px;
+    padding: 10px;
+    border-left: 4px solid var(--accent);
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>JavaScript Inheritance</h1>
+<p>Write less code. Reuse more. Build scalable systems.</p>
+
+<div class="card">
+<h2>📌 What is Inheritance?</h2>
+<p>
+Inheritance allows one object or class to <span class="highlight">reuse properties and methods</span> from another.
+It is one of the core concepts of Object-Oriented Programming.
+</p>
+</div>
+
+<div class="card">
+<h2>🧬 Prototype-Based Inheritance (Core JS)</h2>
+
+<p>JavaScript works internally using <span class="highlight">prototypes</span>.</p>
+
+<pre><code>
+// Parent object
+const user = {
+    greet() {
+        return "Hello User";
+    }
+};
+
+// Child object inheriting from user
+const admin = Object.create(user);
+
+admin.role = "Admin";
+
+console.log(admin.greet()); // Hello User
+console.log(admin.role);    // Admin
+</code></pre>
+
+<div class="note">
+JS checks properties in: object → prototype → prototype chain
+</div>
+</div>
+
+<div class="card">
+<h2>🏗️ Class-Based Inheritance (Modern JS)</h2>
+
+<pre><code>
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    introduce() {
+        return `Hi, I'm ${this.name}`;
+    }
+}
+
+class Student extends Person {
+    constructor(name, age, course) {
+        super(name, age); // call parent constructor
+        this.course = course;
+    }
+
+    introduce() {
+        return `${super.introduce()} and I study ${this.course}`;
+    }
+}
+
+const s1 = new Student("Vivek", 20, "CSE");
+
+console.log(s1.introduce());
+</code></pre>
+
+<div class="note">
+<span class="highlight">extends</span> → inherit class  
+<span class="highlight">super()</span> → access parent constructor & methods  
+</div>
+</div>
+
+<div class="card">
+<h2>⚡ Method Overriding</h2>
+
+<pre><code>
+class Animal {
+    speak() {
+        return "Animal makes sound";
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        return "Dog barks";
+    }
+}
+
+const d = new Dog();
+console.log(d.speak()); // Dog barks
+</code></pre>
+
+<p>Child class replaces parent method.</p>
+</div>
+
+<div class="card">
+<h2>🔗 Prototype Chain Visualization</h2>
+
+<pre><code>
+console.log(d.__proto__);              // Dog prototype
+console.log(d.__proto__.__proto__);   // Animal prototype
+console.log(d.__proto__.__proto__.__proto__); // null
+</code></pre>
+
+<p>This chain is how JS resolves properties.</p>
+</div>
+
+<div class="card">
+<h2>📊 Real-World Example</h2>
+
+<pre><code>
+class Vehicle {
+    constructor(brand) {
+        this.brand = brand;
+    }
+
+    start() {
+        return `${this.brand} started`;
+    }
+}
+
+class Car extends Vehicle {
+    constructor(brand, model) {
+        super(brand);
+        this.model = model;
+    }
+
+    details() {
+        return `${this.brand} ${this.model}`;
+    }
+}
+
+const car = new Car("Tesla", "Model 3");
+
+console.log(car.start());
+console.log(car.details());
+</code></pre>
+</div>
+
+<div class="card">
+<h2>✅ Advantages</h2>
+<ul>
+    <li>Code reusability</li>
+    <li>Cleaner structure</li>
+    <li>Easier maintenance</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>⚠️ Important Notes</h2>
+<ul>
+    <li>JS is <span class="highlight">prototype-based</span> (classes are syntactic sugar)</li>
+    <li>Always call <code>super()</code> before using <code>this</code></li>
+    <li>Use inheritance only when there is a real relationship</li>
+</ul>
+</div>
+
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
